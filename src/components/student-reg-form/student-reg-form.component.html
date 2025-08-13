@@ -2,20 +2,37 @@
   <h2 mat-dialog-title>{{ isInEditMode ? 'Update Student' : 'Register Student' }}</h2>
 
   <mat-dialog-content class="dialog-content">
-
-  <mat-form-field appearance="outline" class="w-100 FormControls">
+<mat-form-field appearance="outline" class="w-100 FormControls">
   <mat-label>First Name</mat-label>
-  <input appCapitalizeFirst matInput formControlName="firstName" placeholder="Ex. John" />
+  <input 
+    appCapitalizeFirst 
+    matInput 
+    formControlName="firstName" 
+    placeholder="Ex. John" 
+    type="text" 
+    (keypress)="allowOnlyLetters($event)" />
   <mat-error *ngIf="studentRegistrationForm.get('firstName')?.touched && studentRegistrationForm.get('firstName')?.hasError('required')">
     First Name is required.
+  </mat-error>
+  <mat-error *ngIf="studentRegistrationForm.get('firstName')?.touched && studentRegistrationForm.get('firstName')?.hasError('pattern')">
+    Only letters are allowed.
   </mat-error>
 </mat-form-field>
 
 <mat-form-field appearance="outline" class="w-100 FormControls">
   <mat-label>Last Name</mat-label>
-  <input appCapitalizeFirst matInput formControlName="lastName" placeholder="Ex. Doe" />
+  <input 
+    appCapitalizeFirst 
+    matInput 
+    formControlName="lastName" 
+    placeholder="Ex. Doe" 
+    type="text" 
+    (keypress)="allowOnlyLetters($event)" />
   <mat-error *ngIf="studentRegistrationForm.get('lastName')?.touched && studentRegistrationForm.get('lastName')?.hasError('required')">
     Last Name is required.
+  </mat-error>
+  <mat-error *ngIf="studentRegistrationForm.get('lastName')?.touched && studentRegistrationForm.get('lastName')?.hasError('pattern')">
+    Only letters are allowed.
   </mat-error>
 </mat-form-field>
 
@@ -28,8 +45,7 @@
     (input)="formatMobile($event)" 
     maxlength="11" 
     formControlName="mobileNumber" 
-    placeholder="Ex. 1234567890" 
-  />
+    placeholder="Ex. 1234567890" />
   <mat-error *ngIf="studentRegistrationForm.get('mobileNumber')?.touched && studentRegistrationForm.get('mobileNumber')?.hasError('required')">
     Mobile Number is required.
   </mat-error>

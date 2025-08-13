@@ -54,8 +54,20 @@ export class StudentRegFormComponent {
   // }
 createStudentRegistrationForm() {
   this.studentRegistrationForm = this._fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
+    firstName: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z ]+$/) // only letters and spaces
+      ]
+    ],
+    lastName: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^[A-Za-z ]+$/) // only letters and spaces
+      ]
+    ],
     mobileNumber: [
       '',
       [
@@ -64,6 +76,13 @@ createStudentRegistrationForm() {
       ]
     ]
   });
+}
+allowOnlyLetters(event: KeyboardEvent) {
+  const pattern = /^[A-Za-z ]+$/;
+  const inputChar = String.fromCharCode(event.keyCode || event.which);
+  if (!pattern.test(inputChar)) {
+    event.preventDefault();
+  }
 }
 
   onStudentFormSubmit() {
