@@ -45,13 +45,26 @@ export class StudentRegFormComponent {
 
   }
 
-  createStudentRegistrationForm() {
-   this.studentRegistrationForm = this._fb.group({
-     firstName: ['', Validators.required],
-     lastName: ['', Validators.required],   
-     mobileNumber: ['', Validators.required],   
-   });
-  }
+  // createStudentRegistrationForm() {
+  //  this.studentRegistrationForm = this._fb.group({
+  //    firstName: ['', Validators.required],
+  //    lastName: ['', Validators.required],   
+  //    mobileNumber: ['', Validators.required],   
+  //  });
+  // }
+createStudentRegistrationForm() {
+  this.studentRegistrationForm = this._fb.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    mobileNumber: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^\d{10}$/) // exactly 10 digits
+      ]
+    ]
+  });
+}
 
   onStudentFormSubmit() {
     if (this.studentRegistrationForm.valid) {
@@ -96,6 +109,52 @@ export class StudentRegFormComponent {
       }
     });
   }
+
+
+
+// formatMobile(event: Event) {
+//   const input = event.target as HTMLInputElement;
+//   let value = input.value.replace(/\D/g, ''); // sirf digits
+
+//   // Limit to max 10 digits
+//   if (value.length > 10) {
+//     value = value.substring(0, 10);
+//   }
+
+//   // Add space after 5 digits
+//   if (value.length > 5) {
+//     value = value.substring(0, 5) + ' ' + value.substring(5);
+//   }
+
+//   input.value = value;
+// }
+
+formatMobile(event: Event) {
+  const input = event.target as HTMLInputElement;
+  let raw = input.value.replace(/\D/g, ''); // remove everything that's not a digit
+
+  if (raw.length > 10) {
+    raw = raw.substring(0, 10);
+  }
+
+  // formatted display value
+  let formatted = raw;
+  if (raw.length > 5) {
+    formatted = raw.substring(0, 5) + ' ' + raw.substring(5);
+  }
+
+  // update input box (for user)
+  input.value = formatted;
+
+  // update FormControl with raw digits only (no spaces)
+  this.studentRegistrationForm.get('mobileNumber')?.setValue(raw, {
+    emitModelToViewChange: false,  // don't overwrite input.value
+    emitViewToModelChange: true
+  });
+}
+
+
+
 
   onClose() {
     this.studentRegistrationForm.reset();

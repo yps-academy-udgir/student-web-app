@@ -1,4 +1,9 @@
-<h2 mat-dialog-title>{{ data.title || 'Confirm' }}</h2>
+<!-- <h2 mat-dialog-title>{{ data.title || 'Confirm' }}</h2> -->
+<h2 mat-dialog-title>
+  Student #{{ data.stdNum }} - {{ data.student?.firstName }} {{ data.student?.lastName }}
+</h2>
+
+
 <mat-dialog-content>
     <p>{{ data.message || 'Are you sure?' }}</p>
 </mat-dialog-content>

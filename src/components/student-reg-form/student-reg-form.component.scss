@@ -23,3 +23,14 @@
         gap: 8px;
     }
 }
+
+/* For the input field */
+input[formControlName="mobileNumber"] {
+  letter-spacing: 2px; /* har character ke beech extra gap */
+  font-family: monospace; /* uniform spacing */
+}
+
+.FormControls
+{
+   margin:10px 0
+}

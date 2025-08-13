@@ -16,6 +16,7 @@ import { SnackbarService } from '../../services/snackbar.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { IConfirmDialogConfig } from '../../models/confirm-dialog';
 import { StudDetailViewDialogComponent } from '../stud-detail-view-dialog/stud-detail-view-dialog.component';
+import { isDataView } from 'util/types';
 
 @Component({
   selector: 'app-student-details-table',
@@ -27,7 +28,6 @@ import { StudDetailViewDialogComponent } from '../stud-detail-view-dialog/stud-d
 export class StudentDetailsTableComponent implements OnInit {
 
   private _liveAnnouncer = inject(LiveAnnouncer);
-
 
 
   displayedColumns: string[] = ['Sr No', 'firstName', 'lastName','mobileNumber','action'];
@@ -139,18 +139,23 @@ export class StudentDetailsTableComponent implements OnInit {
 
   }
 
-  viewStudent(student: any) {
+  
+
+  viewStudent(student: any , stdNum:number) {
     
     const dialogRef = this._matDialog.open(StudDetailViewDialogComponent, {
       width: '500px',
       data: {
         student: student,
-        isViewMode: true
+        stdNum:stdNum,
+        isViewMode: true,
+      
       }
     });
     dialogRef.afterClosed().subscribe(() => {
       this._studentService.isStudentFormEditMode$.next(false);
     });
+    
   }
 
   onSearchStudent(e: Event) {

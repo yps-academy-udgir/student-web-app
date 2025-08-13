@@ -14,11 +14,17 @@ import { IStudent } from '../../models/student';
 export class StudDetailViewDialogComponent {
 
   student: IStudent = {} as IStudent;
-
+  stdNum!: number;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     if (data && data.student) {
       this.student = data.student;
     }
+    
   }
+
+  ngOnInit() {
+  this.student = this.data.student;
+  this.stdNum = this.data.stdNum;
+}
 
 }

@@ -7,4 +7,12 @@ export interface IConfirmDialogConfig {
 
   showConfirm?: boolean; // default true
   showCancel?: boolean;  // default true
+
+
+   stdNum?: number;
+  student?: {
+    firstName: string;
+    lastName: string;
+    [key: string]: any; // optional: allows extra student fields without error
+  };
 }
