@@ -30,7 +30,7 @@ export class StudentDetailsTableComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['Sr No', 'firstName', 'lastName', 'action'];
+  displayedColumns: string[] = ['Sr No', 'firstName', 'lastName','mobileNumber','action'];
   // dataSource: any[] = []; 
 
 
@@ -60,7 +60,6 @@ export class StudentDetailsTableComponent implements OnInit {
       if (index !== -1) {
         this.dataSource.data[index] = updatedStudent;
         this.dataSource.data = [...this.dataSource.data];
-
       }
     });
   }

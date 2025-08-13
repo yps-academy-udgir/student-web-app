@@ -37,7 +37,8 @@ export class StudentRegFormComponent {
       if (this.isInEditMode && this.data && this.data.student) {
         this.studentRegistrationForm.patchValue({
           firstName: this.data.student.firstName,
-          lastName: this.data.student.lastName
+          lastName: this.data.student.lastName,
+          mobileNumber: this.data.student.mobileNumber
         });
       }
     });
