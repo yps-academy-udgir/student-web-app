@@ -1,10 +1,74 @@
 
+.headText
+{
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: georgia;
+}
 .viewDetails {
   div {
     padding: 8px 0px; // top/bottom 8px, left/right 12px
+    text-align: center;
   }
 }
 .mobile-part {
   margin-right: 8px; // space control
   letter-spacing: 1px; // optional, better readability
+}
+
+
+.student-photo {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+  border-radius: 50%;
+//   overflow: hidden;
+  cursor: pointer;
+  text-align: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Overlay initially hidden */
+  .photo-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    gap: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: rgba(52, 49, 49, 0.303);
+    // background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    backdrop-filter: blur(1px);
+
+    mat-icon {
+      font-size: 18px;
+    }
+  }
+
+  /* Show overlay on hover */
+  &:hover .photo-overlay {
+    opacity: 2;
+  }
+}
+
+/* First time upload box */
+.upload-first-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
 }

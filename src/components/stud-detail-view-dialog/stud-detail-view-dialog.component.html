@@ -1,10 +1,9 @@
-<div class="viewDetails">
+<!-- <div class="viewDetails">
 <h2 mat-dialog-title>Student Details</h2>
 
 <mat-dialog-content class="p-4 space-y-2">
   @if (student) {
     <div><strong>Name : </strong> {{ student.firstName }} {{ student.lastName }}</div>
-    <!-- <div><strong>Mobile No : </strong> {{ student.mobileNumber }}</div> -->
      <div>
   <strong>Mobile No : </strong>
   <span class="mobile-part">{{ student.mobileNumber.toString().slice(0, 5) }}</span>
@@ -19,6 +18,64 @@
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
+ -->
+ <!-- <div><strong>Mobile No : </strong> {{ student.mobileNumber }}</div> -->
+
+
+<h2 mat-dialog-title class="headText">Student Details</h2>
+
+<mat-dialog-content class="p-4 space-y-2">
+
+  <!-- Agar first time hai to default upload section -->
+  <div *ngIf="!selectedImage" class="upload-first-time">
+    <button mat-icon-button color="primary" (click)="triggerFileUpload()">
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+    <span (click)="triggerFileUpload()" class="uploadText">Upload Photo</span>
+  </div>
+
+  <!-- Agar photo upload ho gayi hai -->
+  <div *ngIf="selectedImage" class="student-photo" (click)="triggerFileUpload()">
+    <img [src]="selectedImage" alt="{{ student.firstName }}" />
+    <div class="photo-overlay">
+      <mat-icon>cloud_upload</mat-icon>
+      <span>Upload Photo</span>
+    </div>
+  </div>
+
+  <!-- Hidden input -->
+  <input
+    type="file"
+    #fileInput
+    (change)="onFileSelected($event)"
+    accept="image/png, image/jpeg"
+    hidden
+  />
+
+  <!-- Student Info -->
+  <div class="viewDetails">
+   <div><strong>Name : </strong> {{ student.firstName }} {{ student.lastName }}</div>
+     <div>
+  <strong>Mobile No : </strong>
+  <span class="mobile-part">{{ student.mobileNumber.toString().slice(0, 5) }}</span>
+  <span class="mobile-part">{{ student.mobileNumber.toString().slice(5) }}</span>
+</div>
+</div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
+
+
+
+
+
+
+
+
+
 
 <!-- <h2 mat-dialog-title>
   Student #{{ stdNum }} - {{ student?.firstName }} {{ student?.lastName }}
