@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    
     "serve:ssr:crud-practice-with-api": "node dist/crud-practice-with-api/server/server.mjs"
   },
   "private": true,
