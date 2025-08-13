@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { environment } from '../environment/environment';
 import { tap } from 'rxjs';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { tap } from 'rxjs';
 export class AuthService {
 
   baseUrl = environment.apiUrl;
+   isAlreadyHaveAccount = signal(false);
 
   constructor(
     private _http: HttpClient,
@@ -23,5 +25,14 @@ export class AuthService {
     );
   }
 
+  login(loginPayload:any){
+    return this._http.post(`${this.baseUrl}auth/login`,loginPayload).pipe(
+      tap((response:any) => {
+        console.log("login response", response);
+      })
+    )
+  }
+
+  
 
 }

@@ -1,8 +1,10 @@
 <form [formGroup]="signUpForm" class="dialog-form">
-  <h2 mat-dialog-title>{{ isSignup ? 'Sign Up' : 'Login' }}</h2>
+  <h2 mat-dialog-title>{{ !isAlreadyHaveAccount() ? 'Sign Up' : 'Login' }}</h2>
 
   <mat-dialog-content class="dialog-content">
 
+    @if (!isAlreadyHaveAccount()) {
+    <!-- full name -->
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Full Name</mat-label>
       <input matInput formControlName="firstName" placeholder="full name" appCapitalizeFirst autocomplete />
@@ -10,27 +12,26 @@
       <mat-error *ngIf="firstName.errors?.['required']">First Name is required</mat-error>
       }
     </mat-form-field>
-
+  }
+    <!-- email -->
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>E-Mail</mat-label>
       <input matInput formControlName="email" placeholder="Enter your email" autocomplete />
       @if (email.invalid && email.touched) {
-      <mat-error>
-        @if (email.errors?.['required']) {
-        Email is required
-        } @else if (email.errors?.['email']) {
-        Enter a valid email
-        } @else if (email.errors?.['pattern']) {
-        Enter a valid email
-        }
-      </mat-error>
-
+        <mat-error>
+          @if (email.errors?.['required']) {
+          Email is required
+          } @else if (email.errors?.['email'] || email.errors?.['pattern']) {
+          Enter a valid email
+          }
+        </mat-error>
       }
       @if (emailAlreadyExistsError()) {
       <mat-error>{{emailAlreadyExistsError()}}</mat-error>
       }
     </mat-form-field>
 
+    <!-- password -->
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password" placeholder="Enter your password" />
@@ -39,33 +40,34 @@
       }
     </mat-form-field>
 
+    @if (!isAlreadyHaveAccount()) {
+    <!-- confirmPassword  -->
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Confirm Password</mat-label>
-      <input matInput formControlName="confirmPassword" placeholder="Enter your password to confirm" />
-      <!-- @if (confirmPassword.invalid && confirmPassword.touched) {
-      @if (confirmPassword.errors?.['required']) {
-      <mat-error>
-        Confirm Password is required
-      </mat-error>
+      <input [errorStateMatcher]="matcher" matInput formControlName="confirmPassword" placeholder="Enter your password to confirm" />
+      
+      @if (confirmPassword.touched && confirmPassword.hasError('required')) {
+        <mat-error>Confirm Password is required</mat-error>
       }
-      } -->
-      <!-- @if (confirmPassword.touched && signUpForm.errors?.['passwordMismatch']) { -->
-      @if ( confirmPassword.touched && confirmPassword.invalid) {
-      <mat-error>
-        @if (confirmPassword.errors?.['required']) {
-        Confirm Password is required
-        }
-      </mat-error>
+      <!-- Mismatch error -->
+      @if (confirmPassword.dirty && confirmPassword.hasError('passwordMismatch')) {
+        <mat-error>Passwords do not match</mat-error>
       }
     </mat-form-field>
-    @if (signUpForm.errors?.['passwordMismatch']) {
-      <span class="error-message">Passwords do not match</span>
-      }
+   }
+   
+    <p>
+      @if(!isAlreadyHaveAccount()){
+         Already have account? <a mat-button (click)="toggleSignInSignUpForm()">Sign In</a> 
+      } @else{
 
+        Dont have account? <a mat-button (click)="toggleSignInSignUpForm()">Sign Up</a> 
+      }
+    </p>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end" class="footer-actions">
-    <button mat-button type="button" (click)="onClose()">Close</button>
-    <button mat-raised-button color="primary" (click)="onSignUp()">{{ isSignup ? 'Sign Up' : 'Log In' }}</button>
+    <button mat-button color="accent" type="button" (click)="onClose()">Close</button>
+    <button mat-raised-button color="primary" (click)="onSignUp()">{{ !isAlreadyHaveAccount() ? 'Sign Up' : 'Log In' }}</button>
   </mat-dialog-actions>
 </form>

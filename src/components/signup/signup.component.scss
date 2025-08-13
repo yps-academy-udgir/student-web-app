@@ -14,9 +14,13 @@
     height: 100%;
 
     .dialog-content {
-        flex: 1 1 auto;
-        overflow: auto;
+        // flex: 1 1 auto;
+        // overflow: auto;
+        overflow: hidden;      
         padding-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         mat-form-field {
             display: block;
             margin-bottom: 1.2rem

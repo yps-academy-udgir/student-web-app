@@ -48,6 +48,7 @@ export class StudentRegFormComponent {
    this.studentRegistrationForm = this._fb.group({
      firstName: ['', Validators.required],
      lastName: ['', Validators.required],   
+     mobileNumber: ['', Validators.required],   
    });
   }
 
