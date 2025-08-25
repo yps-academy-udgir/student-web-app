@@ -14,7 +14,7 @@ export class CapitalizeFirstDirective {
     const input = this.element.nativeElement;
     const value = input.value;
     if (value) {
-      input.value = value.charAt(0).toUpperCase() + value.slice(1);
+      input.value = value.charAt(0).toUpperCase() + value.slice(1).toLocaleLowerCase();
       const event = new Event('input', { bubbles: true }); // notify form control
       input.dispatchEvent(event);
     }
