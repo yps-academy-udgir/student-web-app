@@ -73,7 +73,9 @@
               "buildTarget": "crud-practice-with-api:build:production"
             },
             "development": {
-              "buildTarget": "crud-practice-with-api:build:development"
+              "buildTarget": "crud-practice-with-api:build:development",
+              "port": 4400,
+              "host": "ypsacademy.local"
             }
           },
           "defaultConfiguration": "development"
