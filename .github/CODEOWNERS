@@ -1,0 +1,17 @@
+# CODEOWNERS file for this repository
+# See https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for the entire repository (replace with your org/team)
+* @DineshPatil025
+
+# Example: frontend team owns everything under src/
+# /src/ @your-org/frontend-team
+
+# Example: backend owner for server.ts
+# server.ts @your-github-username
+
+# Example: specific user owns config files
+# /angular.json @your-github-username
+
+# Replace the placeholder handles above with actual GitHub team or user handles.
+# Remove or adjust rules as needed for your repository's ownership structure.
