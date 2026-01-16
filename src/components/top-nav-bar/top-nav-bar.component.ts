@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { StudentRegFormComponent } from '../student-reg-form/student-reg-form.component';
 import { SignupComponent } from '../signup/signup.component';
 import { AuthService } from '../../services/auth.service';
+import { CommonService } from '../../services/common.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class TopNavBarComponent {
 
   constructor(
     private dialog: MatDialog,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _commonService: CommonService
   ) { }
 
   ngOnInit(): void {    
@@ -46,5 +48,12 @@ export class TopNavBarComponent {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+
+  openSideNav(){
+    this._commonService.isSidebarOpen = !this._commonService.isSidebarOpen;
+    console.log(this._commonService.isSidebarOpen);
+  }
+
+  
 
 }
