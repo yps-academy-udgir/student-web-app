@@ -15,7 +15,7 @@
    <!-- MOBILENUMBER -->
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Mobile Number</mat-label>
-      <input matInput  formControlName="mobileNumber" appNumberFormat [groupSize] = '5' [separator]="'-'" [maxLength]="10" placeholder="Ex. 1234567890" />
+      <input matInput  formControlName="mobileNumber" appNumberFormat [groupSize] = '3'  [maxLength]="10" placeholder="Ex. 1234567890" />
       @if(studentRegistrationForm.get('mobileNumber')?.hasError('numberInvalid')) {
         <mat-error> Invalid number</mat-error>
       }
