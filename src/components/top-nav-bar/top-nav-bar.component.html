@@ -1,18 +1,15 @@
 <mat-toolbar color="accent">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" 
+  (click)="openSideNav()"
+  > <mat-icon>menu</mat-icon> </button>
   <span>Crud Application</span>
   <span class="example-spacer"></span>
   <button mat-raised-button  [color]="'primary'" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
   (click)="onAddStudent()"
-  >
-    Add Student
-  </button>
+  > Add Student</button>  
   <button mat-raised-button  [color]="'primary'" class="example-icon favorite-icon" aria-label="Example icon-button with heart icon"
   (click)="onSignUp()"
-  >
-    Sign Up
-  </button>
+  >Sign Up</button>
  
 </mat-toolbar>
+ 

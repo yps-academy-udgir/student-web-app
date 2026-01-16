@@ -10,14 +10,30 @@
 
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Last Name</mat-label> 
-      <input appCapitalizeFirst matInput formControlName="lastName" placeholder="Ex. Doe" />
+      <input appCapitalizeFirst matInput formControlName="lastName" placeholder="Ex. Doe" />  
     </mat-form-field>
    <!-- MOBILENUMBER -->
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Mobile Number</mat-label>
-      <input matInput formControlName="mobileNumber" placeholder="Ex. 1234567890" />
+      <input matInput  formControlName="mobileNumber" appNumberFormat [groupSize] = '3'  [maxLength]="10" placeholder="Ex. 1234567890" />
+      @if(studentRegistrationForm.get('mobileNumber')?.hasError('numberInvalid')) {
+        <mat-error> Invalid number</mat-error>
+      }
+      @if(studentRegistrationForm.get('mobileNumber')?.hasError('required')) {
+        <mat-error> Mobile number is required</mat-error>
+      }
     </mat-form-field>
-    
+    <!-- EMAIL  -->
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Ex. john.doe@example.com" />
+      @if(studentRegistrationForm.get('email')?.hasError('email')) {
+        <mat-error> Invalid email format</mat-error>
+      }
+      @if(studentRegistrationForm.get('email')?.hasError('required')) {
+        <mat-error> Email is required</mat-error>
+      }
+    </mat-form-field>
   </mat-dialog-content>
 
   <mat-dialog-actions align="end" class="footer-actions">

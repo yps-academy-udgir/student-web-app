@@ -13,7 +13,8 @@ import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
 
 
 export const SHARED_MATERIAL_MODULES = [
@@ -31,5 +32,7 @@ export const SHARED_MATERIAL_MODULES = [
   MatPaginatorModule,
   MatSortModule,
   ReactiveFormsModule ,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatSidenavModule,
+  MatListModule
 ];

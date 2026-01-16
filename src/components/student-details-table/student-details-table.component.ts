@@ -1,10 +1,6 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { StudentService } from '../../services/student.service';
-import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { signalUpdateFn } from '@angular/core/primitives/signals';
+import { MatTableDataSource } from '@angular/material/table';
 import { SHARED_MATERIAL_MODULES } from '../../shared/shared-material-modules';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentRegFormComponent } from '../student-reg-form/student-reg-form.component';
@@ -16,11 +12,12 @@ import { SnackbarService } from '../../services/snackbar.service';
 import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { IConfirmDialogConfig } from '../../models/confirm-dialog';
 import { StudDetailViewDialogComponent } from '../stud-detail-view-dialog/stud-detail-view-dialog.component';
+import { NumberFormatPipe } from '../../pipe/number-format.pipe';
 
 @Component({
   selector: 'app-student-details-table',
   standalone: true,
-  imports: [MatButtonModule, CommonModule, MatTableModule, MatIconModule, SHARED_MATERIAL_MODULES],
+  imports: [SHARED_MATERIAL_MODULES, NumberFormatPipe],
   templateUrl: './student-details-table.component.html',
   styleUrl: './student-details-table.component.scss'
 })
@@ -30,7 +27,7 @@ export class StudentDetailsTableComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['Sr No', 'firstName', 'lastName','mobileNumber','action'];
+  displayedColumns: string[] = ['Sr No', 'firstName', 'lastName','mobileNumber','email','action'];
   // dataSource: any[] = []; 
 
 
