@@ -136,7 +136,7 @@ export class StudentDetailsTableComponent implements OnInit {
 
   }
 
-  viewStudent(student: any) {
+  viewStudent(student: IStudent) {
     
     const dialogRef = this._matDialog.open(StudDetailViewDialogComponent, {
       width: '500px',
