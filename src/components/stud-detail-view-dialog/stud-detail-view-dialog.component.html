@@ -3,7 +3,8 @@
 <mat-dialog-content class="p-4 space-y-2">
   @if (student) {
     <div><strong>Name:</strong> {{ student.firstName }} {{ student.lastName }}</div>
-    
+    <div><strong>Email:</strong> {{ student.email }}</div>
+    <div><strong>Mobile:</strong> {{ student.mobileNumber | numberFormat:5:'-' }}</div>
   }
 </mat-dialog-content>
 

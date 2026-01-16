@@ -5,5 +5,6 @@ export interface IStudent {
   firstName: string;
   lastName: string;
   mobileNumber: number;
+  email: string;
   // Add other fields as needed
 }
