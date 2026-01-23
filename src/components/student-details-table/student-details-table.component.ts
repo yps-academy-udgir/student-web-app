@@ -68,10 +68,13 @@ export class StudentDetailsTableComponent implements OnInit {
   }
 
   getAllStudents() {
-    this._studentService.getAllStudents().subscribe((students: any) => {
-      this.dataSource.data = students.data;
-    }, error => {
-      console.error('Error fetching students:', error);
+    this._studentService.getAllStudents().subscribe({
+      next: (students: any) => {
+        this.dataSource.data = students.data;
+      },
+      error: (error) => {
+        console.error('Error fetching students:', error);
+      }
     });
   }
 
