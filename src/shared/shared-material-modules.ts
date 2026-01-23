@@ -34,5 +34,7 @@ export const SHARED_MATERIAL_MODULES = [
   ReactiveFormsModule ,
   MatCheckboxModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatCardModule,
+  MatIconModule
 ];

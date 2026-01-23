@@ -1,1 +1,40 @@
-<p>image-uploader works!</p>
+<mat-card
+  class="image-uploader"
+  [class.clickable]="mode() !== 'view'"
+  [class]="'image-uploader--' + shape() + ' image-uploader--' + size()"
+  (click)="mode() !== 'view' && fileInput.click()"
+>
+
+
+  <div class="image-wrapper">
+    @if (displayImageUrl()) {
+      <img
+        [src]="displayImageUrl()"
+        alt="Image"
+      />
+    } @else {
+      <div class="placeholder">
+        <mat-icon>person</mat-icon>
+      </div>
+    }
+
+    @if (mode() !== 'view') {
+      <button
+        mat-icon-button
+        class="action-btn"
+        (click)="$event.stopPropagation(); fileInput.click()"
+      >
+        <mat-icon>photo_camera</mat-icon>
+      </button>
+    }
+  </div>
+
+  <input
+    type="file"
+    accept="image/*"
+    hidden
+    #fileInput
+    (change)="onFileSelected($event)"
+  />
+
+</mat-card>
