@@ -7,11 +7,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from '../../services/snackbar.service';
 import { CapitalizeFirstDirective } from '../../directives/capitalize-first.directive';
 import { NumberFormatDirective } from '../../directives/number-format.directive';
+import { ImageUploaderComponent } from "../image-uploader/image-uploader.component";
 
 @Component({
   selector: 'app-student-reg-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SHARED_MATERIAL_MODULES,CapitalizeFirstDirective, NumberFormatDirective],
+  imports: [CommonModule, ReactiveFormsModule, SHARED_MATERIAL_MODULES, CapitalizeFirstDirective, NumberFormatDirective, ImageUploaderComponent],
   templateUrl: './student-reg-form.component.html',
   styleUrl: './student-reg-form.component.scss'
 })
