@@ -6,7 +6,16 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loaderInterceptor } from '../interceptor/loader.interceptor';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),provideHttpClient(),provideHttpClient(withInterceptors([loaderInterceptor]))]
+  providers: [
+     provideZoneChangeDetection({ eventCoalescing: true }),
+     provideRouter(routes), provideClientHydration(), 
+     provideAnimationsAsync(),
+     provideHttpClient(),
+     provideHttpClient(withInterceptors([loaderInterceptor])),
+     provideNativeDateAdapter(),
+    
+    ]
 };

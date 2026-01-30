@@ -13,11 +13,12 @@ import { ConfirmDialogService } from '../../services/confirm-dialog.service';
 import { IConfirmDialogConfig } from '../../models/confirm-dialog';
 import { StudDetailViewDialogComponent } from '../stud-detail-view-dialog/stud-detail-view-dialog.component';
 import { NumberFormatPipe } from '../../pipe/number-format.pipe';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-student-details-table',
   standalone: true,
-  imports: [SHARED_MATERIAL_MODULES, NumberFormatPipe],
+  imports: [SHARED_MATERIAL_MODULES, NumberFormatPipe,DatePipe],
   templateUrl: './student-details-table.component.html',
   styleUrl: './student-details-table.component.scss'
 })
@@ -27,7 +28,7 @@ export class StudentDetailsTableComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['Sr No', 'firstName', 'lastName','mobileNumber','email','action'];
+  displayedColumns: string[] = ['Sr No', 'firstName', 'lastName','mobileNumber','email','Date Of Birth','Age','action'];
   // dataSource: any[] = []; 
 
 
