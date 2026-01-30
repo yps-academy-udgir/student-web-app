@@ -46,42 +46,57 @@ export class StudentRegFormComponent {
   }
 
   createStudentRegistrationForm() {
-   this.studentRegistrationForm = this._fb.group({
-     firstName: ['', Validators.required],
-     lastName: ['', Validators.required],   
-     mobileNumber: ['', Validators.required],
-     email : ['', [Validators.required, Validators.email]]
-   });
+    this.studentRegistrationForm = this._fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      mobileNumber: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      dateOfBirth: [this.getDateMinusThreeYears(), [Validators.required]]
+    });
   }
+
+  getDateMinusThreeYears(): Date {
+    const today = new Date();
+    today.setFullYear(today.getFullYear() - 3);
+    return today;
+  }
+
+  formatToDDMMYY(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear()).slice(0);
+    console.log(year)
+
+    return `${year}-${month}-${day}`;
+  }
+
 
   onStudentFormSubmit() {
     if (this.studentRegistrationForm.valid) {
+      const rawNumber = this.studentRegistrationForm.value.mobileNumber.replace(/\D/g, '');
+      const dob: Date = this.studentRegistrationForm.value.dateOfBirth;
+      const formattedDob = this.formatToDDMMYY(dob);
+      const payLoad = { ...this.studentRegistrationForm.value, mobileNumber: rawNumber, dateOfBirth:formattedDob };
       if (this.isInEditMode) {
-        const rawNumber = this.studentRegistrationForm.value.mobileNumber.replace(/\D/g, '');
-        const payLoad = { ...this.studentRegistrationForm.value, mobileNumber: rawNumber };
         this.updateStudent(this.data.student._id, payLoad);
       } else {
-        this.registerStudent();
+        this.registerStudent(payLoad);
       }
-      
     }
   }
 
-
-  registerStudent() {
-    const rawNumber = this.studentRegistrationForm.value.mobileNumber.replace(/\D/g, '');
-    const payLoad = { ...this.studentRegistrationForm.value, mobileNumber: rawNumber };
+  registerStudent(payLoad:any) {
 
     this._studentService.registerStudent(payLoad).subscribe({
-        next: (res: any) => {
-          if (!res.success) {
-            this._snackbarService.show(res.message, 'warn');
-          } else {
-            this.studentRegistrationForm.reset();
-            this.dialogRef.close();
-            this._snackbarService.show(res.message, 'success');
-          }
-        },
+      next: (res: any) => {
+        if (!res.success) {
+          this._snackbarService.show(res.message, 'warn');
+        } else {
+          this.studentRegistrationForm.reset();
+          this.dialogRef.close();
+          this._snackbarService.show(res.message, 'success');
+        }
+      }
     });
   }
 
@@ -89,13 +104,11 @@ export class StudentRegFormComponent {
     this._studentService.updateStudent(studentId, studentData).subscribe({
       next: (res: any) => {
         if (res.success) {
-          this._studentService.sendUpdateStudent$.next(res.data); 
-          this.studentRegistrationForm.reset(); 
-        
+          this._studentService.sendUpdateStudent$.next(res.data);
+          this.studentRegistrationForm.reset();
           this.dialogRef.close();
           this._snackbarService.show(res.message, 'success');
         }
-      
       },
       error: (error: any) => {
         console.error('Error updating student:', error);

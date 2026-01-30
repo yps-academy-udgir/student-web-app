@@ -1,4 +1,4 @@
-<form [formGroup]="studentRegistrationForm"class="dialog-form">
+<form [formGroup]="studentRegistrationForm" class="dialog-form">
   <h2 mat-dialog-title>{{ isInEditMode ? 'Update Student' : 'Register Student' }}</h2>
 
   <mat-dialog-content class="dialog-content">
@@ -33,6 +33,14 @@
       @if(studentRegistrationForm.get('email')?.hasError('required')) {
         <mat-error> Email is required</mat-error>
       }
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Select Dob</mat-label>
+
+      <input matInput formControlName="dateOfBirth" [matDatepicker]="picker" />
+
+      <mat-datepicker-toggle  matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </mat-dialog-content>
 

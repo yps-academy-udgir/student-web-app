@@ -15,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 export const SHARED_MATERIAL_MODULES = [
   MatSnackBarModule,
@@ -34,5 +34,6 @@ export const SHARED_MATERIAL_MODULES = [
   ReactiveFormsModule ,
   MatCheckboxModule,
   MatSidenavModule,
-  MatListModule
+  MatListModule,
+  MatDatepickerModule
 ];
